@@ -8,13 +8,13 @@
 #' @docType package
 #'
 #' @import utils
-#' @import dplyr
-#' @import survival
 #' @import parallel
-#' @import Rfast
-#' @import stringr
 #' @import pbmcapply
 #'
+#' @importFrom stringr str_c
+#' @importFrom dplyr select
+#' @importFrom Rfast regression
+#' @importFrom survival Surv coxph
 #' @importFrom stats glm lm residuals sd var
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #'
