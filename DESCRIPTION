@@ -17,6 +17,7 @@ RoxygenNote: 7.2.3
 Depends: 
     survival
 Imports:
+    survival,
     utils,
     dplyr,
     parallel,
