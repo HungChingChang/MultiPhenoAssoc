@@ -4,6 +4,21 @@
 
 *MultiPhenoAssoc* is an R package for identifying genes associated with multiple disease phenotypes in transcriptomics studies.
 
+## Description
+*MultiPhenoAssoc* is an R package for identifying genes associated with multiple disease phenotypes in transcriptomics studies. *MultiPhenoAssoc* effectively aggregates heterogeneous phenotype-gene effects, allows association with different data types of phenotypes and performs selection of associated
+phenotypes.
+
+## Usage
+```r
+## expr, pheno, confounder are the gene expression, mulitple phenotypes, and confounder.
+## The first three input parameters should be "matrix" with samples displayed in rows.
+## Pheno.type is a k-value vector for indicating the types of outcome variables such as continuous, binary, count, and survival.
+## Two methods proposed in papers ("AFp" and "AFz") can both be applied by the main function. 
+AWFisher.MultiPheno(expr, pheno, confounder, Pheno.type,
+                    method = c("AFp", "AFz"), num.bootstrap = 50,
+                    num.perm = 100, ncores = 5)
+```
+
 ## Installation
 MultiPhenoAssoc v1.0.0 is now available in github
 ```r
