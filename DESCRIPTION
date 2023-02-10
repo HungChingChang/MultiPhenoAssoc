@@ -30,4 +30,6 @@ Collate:
     AWFisher.MultiPheno.R
     MultiPhenoAssoc-package.R
     data.R
-LazyData: true
+LazyData: false
+URL: https://github.com/HungChingChang/MultiPhenoAssoc
+BugReports: https://github.com/HungChingChang/MultiPhenoAssoc/issues/
