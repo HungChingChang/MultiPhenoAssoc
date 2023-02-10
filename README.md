@@ -1,37 +1,19 @@
----
-output: github_document
----
+## MultiPhenoAssoc: Multivariate phenotype-gene association analysis
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+![GitHub release](https://img.shields.io/badge/release-v1.0.0-blue.svg)
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
-
-# MultiPhenoAssoc
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of MultiPhenoAssoc is to ...
+*MultiPhenoAssoc* is an R package for identifying genes associated with multiple disease phenotypes in transcriptomics studies.
 
 ## Installation
-
-You can install the development version of MultiPhenoAssoc like so:
-```{r}
+MultiPhenoAssoc v1.0.0 is now available in github
+```r
 library(devtools)
 install_github("HungChingChang/MultiPhenoAssoc")
 ```
 
 ## Example
-
-Multivariate phenotype-gene association analysis
-```{r}
+#### Perform multivariate phenotype-gene association analysis
+```r
 library(MultiPhenoAssoc)
 data(exampleData)
 Expr <- exampleData$Gene.expr
@@ -47,8 +29,8 @@ AWFisher.MultiPheno(expr = Expr,
                     ncores = 5)
 ```
 
-prepare distance matrix for tight clustering
-```{r}
+#### Prepare distance matrix for tight clustering
+```r
 load("AFp_result.Rdata")
 load("Distance.matrix.AFp.Rdata")
 AFp.BH <- p.adjust(AFp.result$AFp.pvalue, "BH")
@@ -57,8 +39,8 @@ Distance.matrix <- 1 - Distance.matrix.AFp[sig.gene.index, sig.gene.index]
 colnames(Distance.matrix) <- rownames(Distance.matrix) <- rep("",dim(Distance.matrix)[1])
 ```
 
-tight clustering
-```{r}
+#### Tight clustering
+```r
 res <- tight.clust(Distance.matrix, 3, 10, random.seed=12345)
 save(res, file="tight_clustering.Rdata")
 set1.index <- which(res$cluster==1)
@@ -79,4 +61,4 @@ legend("top", legend = paste0("C",1:3),
        col = as.character(1:3),
        cex=1, lty=1, lwd=3, horiz = T)
 ```
-
+![cluster](figure/heatmap_tightclust.png)
