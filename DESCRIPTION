@@ -1,0 +1,33 @@
+Package: MultiPhenoAssoc
+Type: Package
+Title: Multivariate phenotype-gene association analysis
+Version: 1.0.0
+Date: 2023-02-10
+Authors@R: 
+    c(person("Yujia", "Li", , "li_yujia@lilly.com", role = c("aut")),
+    person("Yusi", "Fang", , "yuf31@pitt.edu ", role = c("aut")),
+    person("Peng", "Liu", , "pel67@pitt.edu", role = c("aut")),
+    person("Michael T.", "Gorczyca", , "mtg49@pitt.edu", role = c("aut")),
+    person("Hung-Ching", "Chang", , "rick.chang@pitt.edu", role = c("aut", "cre")),
+    person("George C.", "Tseng", , "ctseng@pitt.edu", role = c("aut")))
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Depends: 
+    R (>= 3.6.0)
+Imports:
+    utils,
+    dplyr,
+    survival,
+    parallel,
+    Rfast,
+    stringr,
+    pbmcapply
+Collate:
+    utils.R
+    AWFisher.MultiPheno.R
+    MultiPhenoAssoc-package.R
+    data.R
+LazyData: true
