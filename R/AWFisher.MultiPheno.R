@@ -8,6 +8,9 @@
 #' @param num.perm
 #' @param num.bootstrap
 #' @param ncores
+#'
+#'
+#' @export
 AWFisher.MultiPheno <- function(expr,
                                 pheno,
                                 confounder,
