@@ -54,6 +54,7 @@ colnames(Distance.matrix) <- rownames(Distance.matrix) <- rep("",dim(Distance.ma
 
 #### Tight clustering
 ```r
+library(tightClust)
 res <- tight.clust(Distance.matrix, 3, 10, random.seed=12345)
 set1.index <- which(res$cluster==1)
 set2.index <- which(res$cluster==2)
