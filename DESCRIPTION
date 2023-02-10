@@ -15,16 +15,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: 
-    R (>= 3.6.0),
-    survival
+    R (>= 3.6.0)
 Imports:
-    survival,
     utils,
     dplyr,
     parallel,
     Rfast,
     stringr,
-    pbmcapply
+    pbmcapply,
+    survival
 export:
     utils.R
     AWFisher.MultiPheno.R
