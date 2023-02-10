@@ -15,19 +15,15 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: 
-    R (>= 3.6.0),
-    survival
+    R (>= 3.6.0)
 Imports:
     utils,
     dplyr,
     parallel,
     Rfast,
     stringr,
-    pbmcapply
-export:
-    utils.R
-    AWFisher.MultiPheno.R
-    data.R
+    pbmcapply,
+    survival
 LazyData: true
 URL: https://github.com/HungChingChang/MultiPhenoAssoc
 BugReports: https://github.com/HungChingChang/MultiPhenoAssoc/issues/
