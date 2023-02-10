@@ -77,3 +77,7 @@ legend("top", legend = paste0("C",1:3),
        cex=1, lty=1, lwd=3, horiz = T)
 ```
 ![cluster](figure/heatmap_tightclust.png)
+
+
+## License
+This software is licensed under MIT.
