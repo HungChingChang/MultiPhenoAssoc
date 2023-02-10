@@ -76,6 +76,8 @@ legend("top", legend = paste0("C",1:3),
 ```
 ![cluster](heatmap_tightclust.png)
 
+## Reference
+Li, Yujia, et al. "Association study between gene expression and multiple phenotypes in omics applications of complex diseases." arXiv preprint arXiv:2112.05818 (2021).
 
 ## License
 This software is licensed under MIT.
