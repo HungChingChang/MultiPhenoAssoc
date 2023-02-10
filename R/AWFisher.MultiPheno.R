@@ -58,7 +58,7 @@ AWFisher.MultiPheno <- function(expr,
       Y.residual[,i]<-model$residuals
     }
     if(Pheno.type[i] == "survival"){
-      model <- coxph(Y ~ ., data=data.temp)
+      model <- survival::coxph(Y ~ ., data=data.temp)
       Y.residual[,i]<-residuals(model, type = "martingale")
     }
   }
@@ -125,7 +125,7 @@ AWFisher.MultiPheno <- function(expr,
         Y.residual[,i]<-model$residuals
       }
       if(Pheno.type[i] == "survival"){
-        model <- coxph(Y ~ ., data=data.temp)
+        model <- survival::coxph(Y ~ ., data=data.temp)
         Y.residual[,i]<-residuals(model, type = "martingale")
       }
     }
