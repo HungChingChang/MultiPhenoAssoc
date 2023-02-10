@@ -15,6 +15,9 @@ AWFisher.MultiPheno(
   ncores = 1
 )
 }
+\arguments{
+\item{ncores}{}
+}
 \description{
 Multivariate phenotype-gene association analysis
 }

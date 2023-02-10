@@ -2,23 +2,8 @@
 % Please edit documentation in R/MultiPhenoAssoc-package.R
 \docType{package}
 \name{MultiPhenoAssoc-package}
-\alias{MultiPhenoAssoc}
 \alias{MultiPhenoAssoc-package}
-\title{MultiPhenoAssoc: Multivariate phenotype-gene association analysis}
+\title{Multivariate phenotype-gene association analysis}
 \description{
-What the package does (one paragraph).
+XXXXXX
 }
-\author{
-\strong{Maintainer}: Hung-Ching Chang \email{rick.chang@pitt.edu}
-
-Authors:
-\itemize{
-  \item Yujia Li \email{li_yujia@lilly.com}
-  \item Yusi Fang \email{yuf31@pitt.edu }
-  \item Peng Liu \email{pel67@pitt.edu}
-  \item Michael T. Gorczyca \email{mtg49@pitt.edu}
-  \item George C. Tseng \email{ctseng@pitt.edu}
-}
-
-}
-\keyword{internal}

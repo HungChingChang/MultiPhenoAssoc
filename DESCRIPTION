@@ -17,18 +17,7 @@ RoxygenNote: 7.2.3
 Depends: 
     R (>= 3.6.0)
 Imports:
-    utils,
-    dplyr,
-    survival,
-    parallel,
-    Rfast,
-    stringr,
-    pbmcapply
 export:
-    utils.R
-    AWFisher.MultiPheno.R
-    MultiPhenoAssoc-package.R
-    data.R
 LazyData: false
 URL: https://github.com/HungChingChang/MultiPhenoAssoc
 BugReports: https://github.com/HungChingChang/MultiPhenoAssoc/issues/
