@@ -1,14 +1,16 @@
-#' Multivariate phenotype-gene association analysis
+#' AWFisher.MultiPheno is a function for identifying genes associated with multiple disease phenotypes in transcriptomics studies
 #'
-#' @param expr
-#' @param pheno
-#' @param confounder
-#' @param Pheno.type
-#' @param method
-#' @param num.perm
-#' @param num.bootstrap
-#' @param ncores
+#' @param expr a matrix of gene expression data. Rows represent samples, columns represent genes.
+#' @param pheno a matrix of multiple phenotypes. Rows represent samples, columns represent phenotypes.
+#' @param confounder a matrix of confounder. Do not use vector.
+#' @param Pheno.type a vector of phenotypes' type. Current version supports "continuous", "binary", "count", and "survival".
+#' @param method the method to be applied to the algorithm. Either "AFp" (default) or "AFz".
+#' @param num.perm number of permutation to get the null distribution
+#' @param num.bootstrap number of bootstrap samples for generating variability index and distance matrix
+#' @param ncores number of cores
 #'
+#' @return a vector of p-value, which aggregates heterogeneous effects in the input p-values.
+#' Variability index and Distance matrix will be saved as RData in the current directory.
 #'
 #' @export
 AWFisher.MultiPheno <- function(expr,
@@ -84,8 +86,8 @@ AWFisher.MultiPheno <- function(expr,
                    input.stat = res.origin)
     #mod.AFp <- AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
     #final.res <- list(AFp = mod.AFp, input.stat = res.origin)
-    AFp.result <- final.res
-    save(AFp.result, file = "AFp_result.Rdata")
+    AFp.result <- final.res$AFp.pvalue
+    #save(AFp.result, file = "AFp_result.Rdata")
   }
   #AFz
   if(method == "AFz"){
@@ -93,8 +95,8 @@ AWFisher.MultiPheno <- function(expr,
                    input.stat = res.origin)
     #mod.AFz <- AFz(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
     #final.res <- list(AFz = mod.AFz, input.stat = res.origin)
-    AFz.result <- final.res
-    save(AFz.result, file = "AFz_result.Rdata")
+    AFz.result <- final.res$AFz.pvalue
+    #save(AFz.result, file = "AFz_result.Rdata")
   }
 
   #####step 3#####
@@ -157,7 +159,7 @@ AWFisher.MultiPheno <- function(expr,
     }
     return(final.res)
   },mc.cores = ncores)
-  save(bootstrap.pvalue,file="bootstrap_pvalue.Rdata")
+  #save(bootstrap.pvalue,file="bootstrap_pvalue.Rdata")
 
   message("\n - Calculating variability index")
   if(method == "AFp"){
@@ -241,5 +243,9 @@ AWFisher.MultiPheno <- function(expr,
     Distance.matrix.AFz <- Distance.matrix.AFz/num.bootstrap
     save(Distance.matrix.AFz,file="Distance_matrix_AFz.Rdata")
   }
+
+  # return AFp/AFz p-value
+  if(method == "AFp"){return(AFp.result)}
+  if(method == "AFz"){return(AFz.result)}
 }
 

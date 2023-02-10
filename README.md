@@ -35,21 +35,20 @@ Expr <- exampleData$Gene.expr
 Pheno <- exampleData$Pheno
 Confounder <- exampleData$Confounder
 Pheno.type <- c("continuous", "count", "binary", "survival")
-AWFisher.MultiPheno(expr = Expr,
-                    pheno = Pheno,
-                    confounder = Confounder,
-                    Pheno.type = Pheno.type,
-                    method = "AFp",
-                    num.bootstrap = 10,
-                    ncores = 5)
+AFp.pvalue <- AWFisher.MultiPheno(expr = Expr,
+                                  pheno = Pheno,
+                                  confounder = Confounder,
+                                  Pheno.type = Pheno.type,
+                                  method = "AFp",
+                                  num.bootstrap = 10,
+                                  ncores = 5)
 ```
 
 #### Prepare distance matrix for tight clustering
 ```r
-load("AFp_result.Rdata")
 load("Distance.matrix.AFp.Rdata")
-AFp.BH <- p.adjust(AFp.result$AFp.pvalue, "BH")
-sig.gene.index <- which(AFp.BH < 0.01)
+AFp.BH <- p.adjust(AFp.pvalue, "BH") # Benjamini-Hochberg correlation
+sig.gene.index <- which(AFp.BH < 0.01) # set 0.01 as threshold to select significant genes
 Distance.matrix <- 1 - Distance.matrix.AFp[sig.gene.index, sig.gene.index]
 colnames(Distance.matrix) <- rownames(Distance.matrix) <- rep("",dim(Distance.matrix)[1])
 ```
@@ -57,7 +56,6 @@ colnames(Distance.matrix) <- rownames(Distance.matrix) <- rep("",dim(Distance.ma
 #### Tight clustering
 ```r
 res <- tight.clust(Distance.matrix, 3, 10, random.seed=12345)
-save(res, file="tight_clustering.Rdata")
 set1.index <- which(res$cluster==1)
 set2.index <- which(res$cluster==2)
 set3.index <- which(res$cluster==3)

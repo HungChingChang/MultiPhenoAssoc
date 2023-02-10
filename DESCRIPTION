@@ -10,8 +10,8 @@ Authors@R:
     person("Michael T.", "Gorczyca", , "mtg49@pitt.edu", role = c("aut")),
     person("Hung-Ching", "Chang", , "rick.chang@pitt.edu", role = c("aut", "cre")),
     person("George C.", "Tseng", , "ctseng@pitt.edu", role = c("aut")))
-Description: What the package does (one paragraph).
-License: MIT + file LICENSE
+Description: identifying genes associated with multiple disease phenotypes in transcriptomics studies
+License: MIT
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: 
@@ -27,7 +27,6 @@ Imports:
 export:
     utils.R
     AWFisher.MultiPheno.R
-    MultiPhenoAssoc-package.R
     data.R
 LazyData: false
 URL: https://github.com/HungChingChang/MultiPhenoAssoc
