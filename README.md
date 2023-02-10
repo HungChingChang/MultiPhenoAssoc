@@ -32,8 +32,7 @@ install_github("HungChingChang/MultiPhenoAssoc")
 library(MultiPhenoAssoc)
 data(exampleData)
 Expr <- exampleData$Gene.expr
-Pheno <- exampleData$Pheno[,1:3]
-Pheno$OS <- Surv(exampleData$Pheno[,4], exampleData$Pheno[,5])
+Pheno <- exampleData$Pheno
 Confounder <- exampleData$Confounder
 Pheno.type <- c("continuous", "count", "binary", "survival")
 AFp.pvalue <- AWFisher.MultiPheno(expr = Expr,
