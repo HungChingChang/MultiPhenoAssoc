@@ -15,7 +15,6 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 RoxygenNote: 7.2.3
 Depends: 
-    R (>= 3.6.0),
     survival
 Imports:
     utils,
