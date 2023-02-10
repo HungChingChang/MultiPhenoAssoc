@@ -61,4 +61,4 @@ legend("top", legend = paste0("C",1:3),
        col = as.character(1:3),
        cex=1, lty=1, lwd=3, horiz = T)
 ```
-![cluster](https://github.com/HungChingChang/MultiPhenoAssoc/figure/heatmap_tightclust.png)
+![cluster](figure/heatmap_tightclust.png)
