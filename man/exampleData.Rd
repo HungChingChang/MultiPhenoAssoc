@@ -3,29 +3,21 @@
 \docType{data}
 \name{exampleData}
 \alias{exampleData}
-\title{Seizure Counts for Epileptics}
+\title{Subdataset from METABRIC
+(https://www.mercuriolab.umassmed.edu/metabric)}
 \format{
-his data frame has 295 rows and the following 5 columns:
+A list with three types of data
 \describe{
-  \item{y}{the count for the 2-week period.}
-  \item{trt}{treatment, "placebo" or "progabide"}
-  \item{post}{post treatment. 0 for no, 1 for yes}
-  \item{subject}{subject id}
-  \item{tj}{time}
+  \item{Pheno}{A matrix with four phenotypes.}
+  \item{Gene.expr}{A matrix with 3k genes}
+  \item{Confounder: }{A matrix with two columns. The first column is age, and the second column is generated from normal distribution with mean 20 and variance 10}
 }
-}
-\source{
-\url{https://cran.r-project.org/package=MASS}
 }
 \usage{
 exampleData
 }
 \description{
-Thall and Vail (1990) give a data set on two-week
-seizure counts for 59 epileptics. The number of seizures was
-recorded for a baseline period of 8 weeks, and then patients
-were randomly assigned to a treatment group or a control group.
-Counts were then recorded for four successive two-week periods.
-The subject's age is the only covariate.
+Containing 50 samples with grade 2 and 50 samples with grade 3.
+3k genes are pre-selected by coefficient of variation.
 }
 \keyword{datasets}

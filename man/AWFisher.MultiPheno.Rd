@@ -2,7 +2,7 @@
 % Please edit documentation in R/AWFisher.MultiPheno.R
 \name{AWFisher.MultiPheno}
 \alias{AWFisher.MultiPheno}
-\title{Multivariate phenotype-gene association analysis}
+\title{AWFisher.MultiPheno is a function for identifying genes associated with multiple disease phenotypes in transcriptomics studies}
 \usage{
 AWFisher.MultiPheno(
   expr,
@@ -16,8 +16,26 @@ AWFisher.MultiPheno(
 )
 }
 \arguments{
-\item{ncores}{}
+\item{expr}{a matrix of gene expression data. Rows represent samples, columns represent genes.}
+
+\item{pheno}{a matrix of multiple phenotypes. Rows represent samples, columns represent phenotypes.}
+
+\item{confounder}{a matrix of confounder. Do not use vector.}
+
+\item{Pheno.type}{a vector of phenotypes' type. Current version supports "continuous", "binary", "count", and "survival".}
+
+\item{method}{the method to be applied to the algorithm. Either "AFp" (default) or "AFz".}
+
+\item{num.perm}{number of permutation to get the null distribution}
+
+\item{num.bootstrap}{number of bootstrap samples for generating variability index and distance matrix}
+
+\item{ncores}{number of cores}
+}
+\value{
+a vector of p-value, which aggregates heterogeneous effects in the input p-values.
+Variability index and Distance matrix will be saved as RData in the current directory.
 }
 \description{
-Multivariate phenotype-gene association analysis
+AWFisher.MultiPheno is a function for identifying genes associated with multiple disease phenotypes in transcriptomics studies
 }
