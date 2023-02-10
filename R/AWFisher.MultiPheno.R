@@ -149,15 +149,11 @@ AWFisher.MultiPheno <- function(expr,
     if(method == "AFp"){
       final.res <- c(AFp(pvalue = pvalue.bootstrap$pvalue,pvalue.perm = Pvalue.permutation),
                      input.stat = pvalue.bootstrap)
-      #mod.AFp <- AFp(pvalue = pvalue.bootstrap$pvalue,pvalue.perm = Pvalue.permutation)
-      #final.res <- list(AFz = mod.AFz, input.stat=pvalue.bootstrap)
     }
     #AFz
     if(method == "AFz"){
       final.res <- c(AFz(pvalue = pvalue.bootstrap$pvalue,pvalue.perm = Pvalue.permutation),
                      input.stat = pvalue.bootstrap)
-      #mod.AFz <- AFz(pvalue = pvalue.bootstrap$pvalue,pvalue.perm = Pvalue.permutation)
-      #final.res <- list(AFz = mod.AFz, input.stat=pvalue.bootstrap)
     }
     return(final.res)
   },mc.cores = ncores)
