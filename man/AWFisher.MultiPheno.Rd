@@ -33,8 +33,12 @@ AWFisher.MultiPheno(
 \item{ncores}{number of cores}
 }
 \value{
-a vector of p-value, which aggregates heterogeneous effects in the input p-values.
-Variability index and Distance matrix will be saved as RData in the current directory.
+\itemize{
+    \item{pvalue: }{a vector of p-value (length is number of genes), which aggregates heterogeneous effects of all phenotypes for each gene.
+    The p-value vector can be used to determine which genes are associated with phenotypes.}
+    \item{weight: }{A weight matrix, which can be used to determine which specific phenotypes a gene is associate with.}
+    \item{others: }{Variability index for the weight estimation and Distance matrix among genes will be saved as RData in the current directory.}
+}
 }
 \description{
 AWFisher.MultiPheno is a function for identifying genes associated with multiple disease phenotypes in transcriptomics studies
