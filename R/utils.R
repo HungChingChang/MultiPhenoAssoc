@@ -154,7 +154,7 @@ AFp <- function(pvalue,pvalue.perm){
     }
     return(x)
     }))
-  res<-list(W=final.AFp,AFp.pvalue=pvalue.res)
+  res<-list(weight=final.AFp, pvalue=pvalue.res)
   return(res)
 }
 
@@ -202,6 +202,6 @@ AFz <- function(pvalue,pvalue.perm){
     }
     return(x)
   }))
-  res<-list(W=final.AFz,AFz.pvalue=pvalue.res)
+  res<-list(weight=final.AFz, pvalue=pvalue.res)
   return(res)
 }

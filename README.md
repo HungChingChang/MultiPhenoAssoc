@@ -34,19 +34,19 @@ Expr <- exampleData$Gene.expr
 Pheno <- exampleData$Pheno
 Confounder <- exampleData$Confounder
 Pheno.type <- c("continuous", "count", "binary", "survival")
-AFp.pvalue <- AWFisher.MultiPheno(expr = Expr,
-                                  pheno = Pheno,
-                                  confounder = Confounder,
-                                  Pheno.type = Pheno.type,
-                                  method = "AFp",
-                                  num.bootstrap = 10,
-                                  ncores = 5)
+AFp.res <- AWFisher.MultiPheno(expr = Expr,
+                               pheno = Pheno,
+                               confounder = Confounder,
+                               Pheno.type = Pheno.type,
+                               method = "AFp",
+                               num.bootstrap = 10,
+                               ncores = 5)
 ```
 
 #### Prepare distance matrix for tight clustering
 ```r
 load("Distance.matrix.AFp.Rdata")
-AFp.BH <- p.adjust(AFp.pvalue, "BH") # Benjamini-Hochberg correlation
+AFp.BH <- p.adjust(AFp.res$pvalue, "BH") # Benjamini-Hochberg correlation
 sig.gene.index <- which(AFp.BH < 0.01) # set 0.01 as threshold to select significant genes
 Distance.matrix <- 1 - Distance.matrix.AFp[sig.gene.index, sig.gene.index]
 colnames(Distance.matrix) <- rownames(Distance.matrix) <- rep("",dim(Distance.matrix)[1])

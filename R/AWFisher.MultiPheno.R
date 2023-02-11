@@ -9,8 +9,15 @@
 #' @param num.bootstrap number of bootstrap samples for generating variability index and distance matrix
 #' @param ncores number of cores
 #'
-#' @return a vector of p-value, which aggregates heterogeneous effects in the input p-values.
-#' Variability index and Distance matrix will be saved as RData in the current directory.
+#' @return
+#' \itemize{
+#'     \item{pvalue: }{a vector of p-value (length is number of genes), which aggregates heterogeneous effects of all phenotypes for each gene.
+#'     The p-value vector can be used to determine which genes are associated with phenotypes.}
+#'     \item{weight: }{A weight matrix, which can be used to determine which specific phenotypes a gene is associate with.}
+#'     \item{others: }{Variability index for the weight estimation and Distance matrix among genes will be saved as RData in the current directory.}
+#' }
+#'
+#'
 #'
 #' @export
 AWFisher.MultiPheno <- function(expr,
@@ -82,20 +89,20 @@ AWFisher.MultiPheno <- function(expr,
   message("\n Step 2: Perform AFp/AFz method ...")
   #AFp
   if(method == "AFp"){
-    final.res <- c(AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation),
+    AFp.result <- AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
+    final.res <- c(AFp.result,
                    input.stat = res.origin)
     #mod.AFp <- AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
     #final.res <- list(AFp = mod.AFp, input.stat = res.origin)
-    AFp.result <- final.res$AFp.pvalue
     #save(AFp.result, file = "AFp_result.Rdata")
   }
   #AFz
   if(method == "AFz"){
-    final.res <- c(AFz(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation),
+    AFz.result <- AFz(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
+    final.res <- c(AFz.result,
                    input.stat = res.origin)
     #mod.AFz <- AFz(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
     #final.res <- list(AFz = mod.AFz, input.stat = res.origin)
-    AFz.result <- final.res$AFz.pvalue
     #save(AFz.result, file = "AFz_result.Rdata")
   }
 
@@ -164,16 +171,16 @@ AWFisher.MultiPheno <- function(expr,
   message("\n - Calculating variability index")
   if(method == "AFp"){
     # show ProgressBar
-    pb <- txtProgressBar(min=0, max=nrow(bootstrap.pvalue[[1]]$W), style=3)
+    pb <- txtProgressBar(min=0, max=nrow(bootstrap.pvalue[[1]]$weight), style=3)
     pbcount <- 0
     setTxtProgressBar(pb, pbcount)
 
-    variability.index.AFp <- matrix(NA,nrow(bootstrap.pvalue[[1]]$W), ncol(Y))
+    variability.index.AFp <- matrix(NA,nrow(bootstrap.pvalue[[1]]$weight), ncol(Y))
     temp<-c()
     for(i in 1:nrow(variability.index.AFp)){
       for(j in 1:ncol(variability.index.AFp)){
         for(k in (1:num.bootstrap)){
-          temp[k]<-bootstrap.pvalue[[k]]$W[i,j]
+          temp[k]<-bootstrap.pvalue[[k]]$weight[i,j]
         }
         variability.index.AFp[i,j] <- 4*(var(temp)*(num.bootstrap-1)/num.bootstrap)
       }
@@ -185,16 +192,16 @@ AWFisher.MultiPheno <- function(expr,
 
   if(method == "AFz"){
     # show ProgressBar
-    pb <- txtProgressBar(min=0, max=nrow(bootstrap.pvalue[[1]]$W), style=3)
+    pb <- txtProgressBar(min=0, max=nrow(bootstrap.pvalue[[1]]$weight), style=3)
     pbcount <- 0
     setTxtProgressBar(pb, pbcount)
 
-    variability.index.AFz<-matrix(NA,nrow(bootstrap.pvalue[[1]]$W), ncol(Y))
+    variability.index.AFz<-matrix(NA,nrow(bootstrap.pvalue[[1]]$weight), ncol(Y))
     temp<-c()
     for(i in 1:nrow(variability.index.AFz)){
       for(j in 1:ncol(variability.index.AFz)){
         for(k in (1:num.bootstrap)){
-          temp[k] <- bootstrap.pvalue[[k]]$W[i,j]
+          temp[k] <- bootstrap.pvalue[[k]]$weight[i,j]
         }
         variability.index.AFz[i,j] <- 4*(var(temp)*(num.bootstrap-1)/num.bootstrap)
       }
@@ -211,10 +218,10 @@ AWFisher.MultiPheno <- function(expr,
     pb <- txtProgressBar(min=0, max=num.bootstrap, style=3)
     pbcount <- 0
     setTxtProgressBar(pb, pbcount)
-    Distance.matrix.AFp <- matrix(0,nrow(bootstrap.pvalue[[1]]$W),nrow(bootstrap.pvalue[[1]]$W))
+    Distance.matrix.AFp <- matrix(0,nrow(bootstrap.pvalue[[1]]$weight),nrow(bootstrap.pvalue[[1]]$weight))
     for(i in 1:num.bootstrap){
       temp <- bootstrap.pvalue[[i]]
-      matrix1 <- temp$W*sign(temp$input.stat.coef)
+      matrix1 <- temp$weight*sign(temp$input.stat.coef)
       res.string <- apply(matrix1, 1, function(x){str_c(x,collapse = "")})
       res.comember <- sapply(res.string, function(x){as.numeric(x==res.string)})
       Distance.matrix.AFp<-Distance.matrix.AFp+res.comember
@@ -230,10 +237,10 @@ AWFisher.MultiPheno <- function(expr,
     pb <- txtProgressBar(min=0, max=num.bootstrap, style=3)
     pbcount <- 0
     setTxtProgressBar(pb, pbcount)
-    Distance.matrix.AFz <- matrix(0,nrow(bootstrap.pvalue[[1]]$W),nrow(bootstrap.pvalue[[1]]$W))
+    Distance.matrix.AFz <- matrix(0,nrow(bootstrap.pvalue[[1]]$weight),nrow(bootstrap.pvalue[[1]]$weight))
     for(i in 1:num.bootstrap){
       temp<-bootstrap.pvalue[[i]]
-      matrix1 <- temp$W*sign(temp$input.stat.coef)
+      matrix1 <- temp$weight*sign(temp$input.stat.coef)
       res.string <- apply(matrix1,1,function(x){str_c(x,collapse = "")})
       res.comember <- sapply(res.string,function(x){as.numeric(x==res.string)})
       Distance.matrix.AFz <- Distance.matrix.AFz+res.comember
