@@ -90,6 +90,7 @@ AWFisher.MultiPheno <- function(expr,
   #AFp
   if(method == "AFp"){
     AFp.result <- AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
+    print(summary(AFp.result))
     final.res <- c(AFp.result,
                    input.stat = res.origin)
     #mod.AFp <- AFp(pvalue = res.origin$pvalue,pvalue.perm = Pvalue.permutation)
