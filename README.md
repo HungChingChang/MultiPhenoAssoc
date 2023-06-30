@@ -22,7 +22,7 @@ AWFisher.MultiPheno(expr, pheno, confounder, Pheno.type,
 MultiPhenoAssoc v1.0.0 is now available in github
 ```r
 library(devtools)
-install_github("HungChingChang/MultiPhenoAssoc")
+install_github("Hung-Ching-Chang/MultiPhenoAssoc")
 ```
 
 ## Example
