@@ -77,7 +77,7 @@ legend("top", legend = paste0("C",1:3),
 ![cluster](heatmap_tightclust.png)
 
 ## Reference
-Li, Yujia, et al. "Association study between gene expression and multiple phenotypes in omics applications of complex diseases." arXiv preprint arXiv:2112.05818 (2021).
+Li, Yujia, Yusi Fang, Hung-Ching Chang, Michael Gorczyca, Peng Liu, and George C. Tseng. 2023. "Adaptively Integrative Association between Multivariate Phenotypes and Transcriptomic Data for Complex Diseases" Genes 14, no. 4: 798. https://doi.org/10.3390/genes14040798
 
 ## License
 This software is licensed under MIT.
